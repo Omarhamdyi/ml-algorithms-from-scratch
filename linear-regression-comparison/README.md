@@ -31,6 +31,10 @@ The goal is to understand the differences between these methods in terms of:
 ---
 
 ## 📂 Project Structure
+    Data/
+    ├── load_data_scaled.py     # load data and scale it 
+    
+    src/
     ├── gradient_descent.py     # Linear Regression using Gradient Descent  
     ├── normal_equation.py      # Linear Regression using Normal Equation  
     ├── sklearn_impl.py         # Linear Regression using scikit-learn  
