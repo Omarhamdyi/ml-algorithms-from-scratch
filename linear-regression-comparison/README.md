@@ -31,42 +31,26 @@ The goal is to understand the differences between these methods in terms of:
 ---
 
 ## 📂 Project Structure
-
-src/
-├── gradient_descent.py     # Linear Regression using Gradient Descent
-
-  ├── normal_equation.py      # Linear Regression using Normal Equation
-  
-  ├── sklearn_impl.py         # Linear Regression using scikit-learn
-  
-  ├── main.py                 # Calls all implementations & stores results
-  
-  └── visualization.py        # Plots results for comparison
-
-
-
+    ├── gradient_descent.py     # Linear Regression using Gradient Descent  
+    ├── normal_equation.py      # Linear Regression using Normal Equation  
+    ├── sklearn_impl.py         # Linear Regression using scikit-learn  
+    ├── main.py                 # Calls all implementations & stores results  
+    └── visualization.py        # Plots results for comparison
 ---
 
-## 📦 Dependencies
-The project requires the following Python libraries:
-bash
-numpy
-pandas
-matplotlib
-scikit-learn
-
-Install them using:
-bash
-pip install -r requirements.txt
-
-
+## 📦 Required Packages 
+- **numpy** – numerical computations → `pip install numpy`  
+- **pandas** – data manipulation and analysis → `pip install pandas`  
+- **matplotlib** – plotting → `pip install matplotlib`  
+- **scikit-learn** – machine learning tools (we will use: `mean_squared_error`, `MinMaxScaler`, `StandardScaler`) → `pip install scikit-learn`  
 ---
 
 ## ⚙ How It Works
 - Each implementation returns:
   - *weights (θ)*
   - *predicted values (y_pred)*
-  - *Mean Squared Error (MSE)*  
+  - *Mean Squared Error (MSE)*
+    
 - The main.py script:
   1. Calls each implementation  
   2. Collects the returned values  
@@ -107,30 +91,36 @@ These derivatives show how changes in each parameter affect the cost. Plugging t
 ### 2. Normal Equation
 A *closed-form solution* for Linear Regression that directly computes the weights without iteration.
 
-*Formula:*
-\[
-\theta = (X^T X)^{-1} X^T y
-\]
+<p align="center">
+  <img  width="30%" src="images/normal equation.png" alt="linear regression comparison">
+  
+    
+> **θ**: Hypothesis parameters that define the model.  
+> **X**: Input feature value of each instance.  
+> **Y**: Output value of each instance.
 
+**Key points:**
 - No need to choose learning rate or iterations  
 - Works well for small to medium datasets  
-- Becomes computationally expensive when number of features is very large (matrix inversion)  
+- Becomes computationally expensive when the number of features is huge (matrix inversion)  
 
 ---
 
 ### 3. Scikit-learn Implementation
 Uses the **LinearRegression** class from Scikit-learn.  
-Internally, it applies *Ordinary Least Squares (OLS)* which is mathematically equivalent to the Normal Equation, but implemented in an optimized way.
+Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically equivalent to the Normal Equation, but implemented in an optimized way.
 
-*Key differences from Normal Equation:*
+**Key differences from Normal Equation:**
 - Handles numerical stability issues better  
 - Efficient for large datasets due to optimized linear algebra libraries  
 - Provides additional features (like regularization in Ridge/Lasso)  
 
-python
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-model.fit(X, y)
+
+**python**
+
+    from sklearn.linear_model import LinearRegression
+    model = LinearRegression()
+    model.fit(X, y)
 
 
 ---
