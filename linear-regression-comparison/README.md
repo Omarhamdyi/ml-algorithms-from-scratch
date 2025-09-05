@@ -1,6 +1,6 @@
 # Linear Regression: Gradient Descent vs Normal Equation vs Scikit-learn
 <p align="center">
-  <img  width="70%" src="linear-regression-comparison.jpg" alt="linear regression comparison">
+  <img  width="70%" src="images/cover.PNG" alt="linear regression comparison">
 
 ## 📑 Table of Contents
 - [Overview](#-overview)
@@ -77,14 +77,27 @@ pip install -r requirements.txt
 ## 🧮 Implemented Methods
 
 ### 1. Gradient Descent
-An *iterative optimization algorithm* used to minimize the cost function.  
-It updates the weights step by step in the opposite direction of the gradient.
 
-*Update rule:*
-\[
-\theta := \theta - \alpha \cdot \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
-\]
+Gradient descent is a **general iterative optimization algorithm** for finding the **minimum of a differentiable function**. At each step, the parameters are updated by moving in the opposite direction of the gradient.  
+It can be applied to any differentiable function where the goal is to find its minimum.
 
+
+<p align="center">
+  <img  width="30%" src="images/gradient descent eq.png" alt="linear regression comparison">
+  
+where α is the learning rate (hyperparameter).
+
+For **linear regression**, the objective function to minimize is the **mean squared error (MSE)**:
+<p align="center">
+  <img  width="50%" src="images/cost function.PNG" alt="linear regression comparison">
+  
+Since the cost function depends on more than one parameter (\(w\) and \(b\)), we compute **partial derivatives** with respect to each parameter:
+<p align="center">
+  <img  width="50%" src="images/parameters updates.PNG" alt="linear regression comparison">
+
+These derivatives show how changes in each parameter affect the cost. Plugging them into the gradient descent rule gives the update equations for \(w\) and \(b\).  
+
+**Key points:**
 - Works well with large datasets  
 - Requires choosing a learning rate (α) and number of iterations  
 - May take time to converge  
