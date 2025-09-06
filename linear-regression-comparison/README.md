@@ -66,26 +66,46 @@ i used the **California Housing dataset**, which contains features such as media
 Gradient descent is a **general iterative optimization algorithm** for finding the **minimum of a differentiable function**. At each step, the parameters are updated by moving in the opposite direction of the gradient.  
 It can be applied to any differentiable function where the goal is to find its minimum.
 
-
 <p align="center">
   <img  width="30%" src="images/gradient descent eq.png" alt="linear regression comparison">
-  
+</p>
+
 where α is the learning rate (hyperparameter).
 
 For **linear regression**, the objective function to minimize is the **mean squared error (MSE)**:
+
 <p align="center">
   <img  width="50%" src="images/cost function.PNG" alt="linear regression comparison">
-  
+</p>
+
 Since the cost function depends on more than one parameter (\(w\) and \(b\)), we compute **partial derivatives** with respect to each parameter:
+
 <p align="center">
   <img  width="50%" src="images/parameters updates.PNG" alt="linear regression comparison">
+</p>
 
 These derivatives show how changes in each parameter affect the cost. Plugging them into the gradient descent rule gives the update equations for \(w\) and \(b\).  
+
+
+### 1.1 🔍 Gradient Checking  
+
+To ensure our gradient implementation is correct, we can use **gradient checking**.  
+The idea is to approximate the derivative using the definition of derivatives:
+
+<p align="center">
+  <img  width="30%" src="images/gradient check.jpeg" alt="linear regression comparison">
+
+> **epsilon (c)**: is a very small number (e.g., \(1e-4)).  
+- Compare this **numerical gradient** with the one computed analytically.  
+- If they are close, the gradient implementation is likely correct.  
+
+This step is especially useful when implementing gradient descent from scratch, as small mistakes in derivatives can lead to incorrect convergence.
 
 **Key points:**
 - Works well with large datasets  
 - Requires choosing a learning rate (α) and number of iterations  
 - May take time to converge  
+
 
 ---
 
@@ -154,14 +174,14 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 ### 1. Gradient Descent
 - Each iteration requires computing the gradient:
   \[
-  O(m \cdot n)
+  O(m cdot n)
   \]
   where:
   - \(m\) = number of training examples  
   - \(n\) = number of features  
 - If we run for \(k\) iterations:
   \[
-  O(k \cdot m \cdot n)
+  O(k cdot m cdot n)
   \]
 - *Scalable* for large \(n\) (features), but sensitive to choice of learning rate and number of iterations.
 
@@ -169,11 +189,11 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 
 ### 2. Normal Equation
 - Requires computing:
-  - \(X^T X\): \(O(m \cdot n^2)\)  
-  - Inverting \((X^T X))\): \(O(n^3)\)  
+  - \(X^T X\): \(O(m cdot n^2)\)  
+  - Inverting \((X^T X)\): \(O(n^3)\)  
 - Total complexity:
   \[
-  O(m \cdot n^2 + n^3)
+  O(m cdot n^2 + n^3)
   \]
 - Efficient for *small to medium feature size (n)*, but becomes very slow if \(n\) is very large.
 
@@ -183,7 +203,7 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 - Internally uses optimized *linear algebra solvers* (like LAPACK).  
 - Complexity is mathematically similar to the *Normal Equation*:
   \[
-  O(m \cdot n^2 + n^3)
+  O(m cdot n^2 + n^3)
   \]
 - But due to optimized libraries, it is usually *faster and more stable* in practice.  
 - Can handle larger datasets better than a manual Normal Equation implementation.
@@ -194,9 +214,9 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 
 | Method            | Time Complexity            | Suitable for             |
 |-------------------|----------------------------|--------------------------|
-| Gradient Descent  | \(O(k \cdot m \cdot n)\)   | Large features (n) and datasets where iterative optimization is preferred |
-| Normal Equation   | \(O(m \cdot n^2 + n^3)\)   | Small/medium datasets with fewer features |
-| Scikit-learn      | \(O(m \cdot n^2 + n^3)\)   | Practical large datasets, optimized computation |
+| Gradient Descent  | \(O(k cdot m cdot n)\)   | Large features (n) and datasets where iterative optimization is preferred |
+| Normal Equation   | \(O(m cdot n^2 + n^3)\)   | Small·medium datasets with fewer features |
+| Scikit-learn      | \(O(m cdot n^2 + n^3)\)   | Practical large datasets, optimized computation |
 
 ---
 
