@@ -12,6 +12,7 @@
   - [Normal Equation](#2-normal-equation)
   - [Scikit-learn](#3-scikit-learn-implementation)
 - [Results](#-results)
+- [Visualization](#-visualization)
 - [Time Complexity Analysis](#-time-complexity-analysis)
 - [Key Takeaways](#-key-takeaways)
 - [Future Work](#-future-work)
@@ -50,9 +51,10 @@ The goal is to understand the differences between these methods in terms of:
 
 ## ⚙ How It Works
 - Each implementation returns:
-  - *weights (θ)*
   - *predicted values (y_pred)*
+  - *weights (θ)*
   - *Mean Squared Error (MSE)*
+  - *R Squared (R2)*
     
 - The main.py script:
   1. Calls each implementation  
@@ -128,17 +130,26 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 
 ---
 
-## 📊 Results
+## 📊 Results 
 - *Comparison Table* (example):
 
-| Method            | MSE   | R²    | Weights              | Notes                   |
-|-------------------|-------|-------|----------------------|--------------------------|
-| Gradient Descent  |  ...  |  ...  | [w0, w1, w2, ...]    | Iterative approach       |
-| Normal Equation   |  ...  |  ...  | [w0, w1, w2, ...]    | Direct closed-form sol.  |
-| Scikit-learn      |  ...  |  ...  | [w0, w1, w2, ...]    | Optimized library impl.  |
+| Method            | MSE                 | R²                 | Weights                                                                 | Notes                   |
+|-------------------|---------------------|--------------------|-------------------------------------------------------------------------|--------------------------|
+| Gradient Descent  | 0.27042315429105385 | 0.5938220970331505 | [ 3.46904075  5.608185    0.58193581  0.51505836  0.97072581  0.48714267 0.07316374 -3.65842993 -3.94199966] | Iterative approach       |
+| Normal Equation   | 0.2621604930923035  | 0.6062326851998051 | [3.72961166, 6.33214009, 0.48122468, -15.13916237, 21.76021606, -0.1418736, -4.70531325, -3.96456829, -4.3625181] | Direct closed-form sol.  |
+| Scikit-learn      | 0.26216049309230355 | 0.6062326851998051 | [3.72961166, 6.33214009, 0.48122468, -15.13916237, 21.76021606, -0.1418736, -4.70531325, -3.96456829, -4.3625181] | Optimized library impl.  |
 
-- *Visualizations*  
-  Plots comparing predicted vs actual values for each method.  
+> **Note:** The results of **Normal Equation** and **Scikit-learn** are identical (same weights, MSE, and R²). 
+---
+
+## 📊 Visualization
+  **Cost vs Iterations**
+  The following graph shows how the **cost function decreases** over iterations during Gradient Descent.  
+  - A smooth downward curve indicates the algorithm is converging properly.  
+  - If the curve flattens out, the model has nearly converged.  
+  - Sudden increases or oscillations usually mean the learning rate is too high. 
+  <p align="center">
+  <img  width="50%" src="images/cost_figure.png" alt="linear regression comparison">
 
 ---
 
