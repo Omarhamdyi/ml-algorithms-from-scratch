@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.metrics import r2_score
 
 def normal_equation(X, y):
     '''
@@ -17,8 +18,6 @@ def normal_equation(X, y):
         (X^T y): (8,)
         Result W: (8,)
     '''
-    # adding ones coulmn for the intercept
-    X = np.hstack([np.ones((X.shape[0],1)),X])
 
     # safer to use pinv instead of inv
     W = np.linalg.pinv(X.T @ X) @ X.T @ y
@@ -27,4 +26,6 @@ def normal_equation(X, y):
     # computing cost function
     err = (y - y_pred)
     cost = (err.T @ err ) / (2 * len(y))
-    return y_pred, W , cost
+    r2 = r2_score(y, y_pred)
+
+    return y_pred, W , cost , r2
