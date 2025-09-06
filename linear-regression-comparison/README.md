@@ -5,7 +5,7 @@
 ## 📑 Table of Contents
 - [Overview](#-overview)
 - [Project Structure](#-project-structure)
-- [Dependencies](#-dependencies)
+- [Required Packages](#-required-packages)
 - [How It Works](#-how-it-works)
 - [Implemented Methods](#-implemented-methods)
   - [Gradient Descent](#1-gradient-descent)
@@ -15,7 +15,6 @@
 - [Time Complexity Analysis](#-time-complexity-analysis)
 - [Key Takeaways](#-key-takeaways)
 - [Future Work](#-future-work)
-- [Author](#-author)
 
 ## 📌 Overview
 This project implements and compares *three approaches* to Linear Regression:
@@ -132,11 +131,11 @@ Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically e
 ## 📊 Results
 - *Comparison Table* (example):
 
-| Method            | MSE   | Notes                   |
-|-------------------|-------|--------------------------|
-| Gradient Descent  |  ...  | Iterative approach       |
-| Normal Equation   |  ...  | Direct closed-form sol.  |
-| Scikit-learn      |  ...  | Optimized library impl.  |
+| Method            | MSE   | R²    | Weights              | Notes                   |
+|-------------------|-------|-------|----------------------|--------------------------|
+| Gradient Descent  |  ...  |  ...  | [w0, w1, w2, ...]    | Iterative approach       |
+| Normal Equation   |  ...  |  ...  | [w0, w1, w2, ...]    | Direct closed-form sol.  |
+| Scikit-learn      |  ...  |  ...  | [w0, w1, w2, ...]    | Optimized library impl.  |
 
 - *Visualizations*  
   Plots comparing predicted vs actual values for each method.  
