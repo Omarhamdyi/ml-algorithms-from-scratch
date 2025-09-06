@@ -1,12 +1,12 @@
-# Linear Regression: Gradient Descent vs Normal Equation vs Scikit-learn
+# Linear Regression: Gradient Descent vs Normal Equation vs Scikit-learn 
 <p align="center">
   <img  width="70%" src="images/cover.PNG" alt="linear regression comparison">
 
 ## 📑 Table of Contents
 - [Overview](#-overview)
+- [Dataset](#-dataset)
 - [Project Structure](#-project-structure)
 - [Required Packages](#-required-packages)
-- [How It Works](#-how-it-works)
 - [Implemented Methods](#-implemented-methods)
   - [Gradient Descent](#1-gradient-descent)
   - [Normal Equation](#2-normal-equation)
@@ -20,25 +20,35 @@
 ## 📌 Overview
 This project implements and compares *three approaches* to Linear Regression:
 1. *Gradient Descent implementation (from scratch)*
-2. *Normal Equation implementation (from scratch)*
+2. *Normal Equation implementation*
 3. *Scikit-learn implementation*
 
 The goal is to understand the differences between these methods in terms of:
 - Implementation complexity
 - Computation (time & resources)
-- Accuracy (Mean Squared Error)
+- Accuracy (Mean Squared Error & R2)
+
+---
+## 📊 Dataset
+i used the **California Housing dataset**, which contains features such as median income, average rooms, and location information, with the target being median house value.  
+
+    from sklearn.datasets import fetch_california_housin
+    housing = fetch_california_housing()
+    X = housing.data        # feature matrix size (20640, 8)
+    t = housing.target      # target vector size  (20640,)
+
 
 ---
 
 ## 📂 Project Structure
     Data/
-    ├── load_data_scaled.py     # load data and scale it 
+    ├── load_data.py     # load data and scale it 
     
     src/
     ├── gradient_descent.py     # Linear Regression using Gradient Descent  
+    ├── main.py                 # Calls all implementations & stores results
     ├── normal_equation.py      # Linear Regression using Normal Equation  
-    ├── sklearn_impl.py         # Linear Regression using scikit-learn  
-    ├── main.py                 # Calls all implementations & stores results  
+    ├── scikit_imp.py           # Linear Regression using scikit-learn  
     └── visualization.py        # Plots results for comparison
 ---
 
@@ -46,21 +56,7 @@ The goal is to understand the differences between these methods in terms of:
 - **numpy** – numerical computations → `pip install numpy`  
 - **pandas** – data manipulation and analysis → `pip install pandas`  
 - **matplotlib** – plotting → `pip install matplotlib`  
-- **scikit-learn** – machine learning tools (we will use: `mean_squared_error`, `MinMaxScaler`, `StandardScaler`) → `pip install scikit-learn`  
----
-
-## ⚙ How It Works
-- Each implementation returns:
-  - *predicted values (y_pred)*
-  - *weights (θ)*
-  - *Mean Squared Error (MSE)*
-  - *R Squared (R2)*
-    
-- The main.py script:
-  1. Calls each implementation  
-  2. Collects the returned values  
-  3. Passes the results to visualization.py for plotting & comparison  
-
+- **scikit-learn** – machine learning tools (we will use: `mean_squared_error`, `MinMaxScaler`, `StandardScaler`) → `pip install scikit-learn` 
 ---
 
 ## 🧮 Implemented Methods
@@ -113,7 +109,7 @@ A *closed-form solution* for Linear Regression that directly computes the weight
 
 ### 3. Scikit-learn Implementation
 Uses the **LinearRegression** class from Scikit-learn.  
-Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically equivalent to the Normal Equation, but implemented in an optimized way.
+Internally, it applies *Ordinary Least Squares (OLS)*, which is mathematically equivalent to the **Normal Equation**, but implemented in an optimized way.
 
 **Key differences from Normal Equation:**
 - Handles numerical stability issues better  
